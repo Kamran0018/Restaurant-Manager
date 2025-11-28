@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="min-h-[70vh] flex items-center justify-center py-8">
+    <div class="bg-white p-6 sm:p-8 shadow-lg rounded-xl max-w-md w-full mx-4">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-orange-600 text-center">Create Account</h2>
+
+        <!-- Error Messages -->
+        {% if messages %}
+        <div class="mb-4 space-y-2">
+            {% for message in messages %}
+            <div class="{% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} p-3 rounded-lg text-sm">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">First Name</label>
+                <input type="text" name="first_name" placeholder="Enter your first name" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                <input type="text" name="last_name" placeholder="Enter your last name" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Username</label>
+                <input type="text" name="username" placeholder="Choose a username" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                <input type="password" name="password1" placeholder="Create a password" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 font-semibold mb-2">Confirm Password</label>
+                <input type="password" name="password2" placeholder="Re-enter your password" required 
+                       class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+            </div>
+
+            <button type="submit" class="bg-orange-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors mt-6">
+                Sign Up
+            </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6 pt-6 border-t">
+            <p class="text-gray-600">
+                Already have an account? 
+                <a href="{% url 'login' %}" class="text-orange-600 font-semibold hover:underline">
+                    Login
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

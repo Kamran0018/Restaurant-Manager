@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h1 class="text-3xl font-bold mb-6 text-center">🍽 Menu Categories</h1>
+
+<!-- Cards start from very left -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    {% for c in categories %}
+    <a href="/category/{{ c.id }}/" 
+       class="bg-white p-4 rounded shadow hover:shadow-lg min-h-[420px]">
+
+        {% if c.image %}
+        <img src="{{ c.image.url }}" 
+             class="rounded mb-3 h-56 w-full object-cover">
+        {% endif %}
+
+        <h2 class="text-xl font-semibold mt-2">{{ c.name }}</h2>
+        <p class="text-gray-600 text-sm mt-1">{{ c.description }}</p>
+    </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
